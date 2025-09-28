@@ -9,8 +9,8 @@ from pprint import pprint
 import numpy as np
 import torch
 from omegaconf import OmegaConf
+from recipes.one_step_off_policy.ray_trainer import OneStepOffRayTrainer
 from verl.protocol import pad_dataproto_to_divisor
-from verl.recipes.one_step_off_policy.ray_trainer import OneStepOffRayTrainer
 from verl.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     RayPPOTrainer,
