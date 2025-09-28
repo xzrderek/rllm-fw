@@ -12,6 +12,7 @@ from verl.experimental.agent_loop import AgentLoopManager
 from verl.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
 from verl.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
+    RayPPOTrainer,
     RayWorkerGroup,
     Role,
     agg_loss,
@@ -105,8 +106,7 @@ class PipelineAgentWorkflowPPOTrainer(AgentWorkflowPPOTrainer):
         if self.config.algorithm.adv_estimator == AdvantageEstimator.REMAX:
             raise NotImplementedError("REMAX is not supported yet")
 
-        super()._validate_config()
-
+        RayPPOTrainer._validate_config(self)
 
     def fit_agent(self):
         """
