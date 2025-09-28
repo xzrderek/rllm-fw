@@ -9,7 +9,6 @@ from pprint import pprint
 import numpy as np
 import torch
 from omegaconf import OmegaConf
-from recipes.one_step_off_policy.ray_trainer import OneStepOffRayTrainer
 from verl.protocol import pad_dataproto_to_divisor
 from verl.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
@@ -34,7 +33,7 @@ from rllm.workflows.workflow import TerminationReason
 from verl import DataProto
 
 
-class AgentWorkflowPPOTrainer(OneStepOffRayTrainer):
+class AgentWorkflowPPOTrainer(RayPPOTrainer):
     def __init__(
         self,
         config,
