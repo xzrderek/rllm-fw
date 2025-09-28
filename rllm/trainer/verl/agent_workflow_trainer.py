@@ -9,12 +9,8 @@ from pprint import pprint
 import numpy as np
 import torch
 from omegaconf import OmegaConf
-
-from rllm.engine.agent_workflow_engine import AgentWorkflowEngine
-from rllm.engine.rollout.verl_engine import VerlEngine
-from rllm.workflows.workflow import TerminationReason
-from verl import DataProto
 from verl.protocol import pad_dataproto_to_divisor
+from verl.recipes.one_step_off_policy.ray_trainer import OneStepOffRayTrainer
 from verl.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     RayPPOTrainer,
@@ -32,8 +28,13 @@ from verl.trainer.ppo.ray_trainer import (
     reduce_metrics,
 )
 
+from rllm.engine.agent_workflow_engine import AgentWorkflowEngine
+from rllm.engine.rollout.verl_engine import VerlEngine
+from rllm.workflows.workflow import TerminationReason
+from verl import DataProto
 
-class AgentWorkflowPPOTrainer(RayPPOTrainer):
+
+class AgentWorkflowPPOTrainer(OneStepOffRayTrainer):
     def __init__(
         self,
         config,
