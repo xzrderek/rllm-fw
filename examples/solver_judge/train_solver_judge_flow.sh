@@ -8,7 +8,7 @@ export VLLM_ENGINE_ITERATION_TIMEOUT_S=100000000000
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 python3 -m examples.solver_judge.train_solver_judge_flow \
     actor_rollout_ref.hybrid_engine=False \
-    trainer.n_training_gpus_per_node=4 \
+    +trainer.n_training_gpus_per_node=4 \
     data.train_batch_size=64 \
     data.max_prompt_length=2048 \
     data.max_response_length=1024 \
