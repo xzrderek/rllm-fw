@@ -9,7 +9,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 python3 -m examples.solver_judge.train_solver_judge_flow \
     actor_rollout_ref.hybrid_engine=False \
     +trainer.n_training_gpus_per_node=4 \
-    data.train_batch_size=64 \
+    data.train_batch_size=8 \
     data.max_prompt_length=2048 \
     data.max_response_length=1024 \
     actor_rollout_ref.model.path=Qwen/Qwen3-0.6B \
@@ -18,7 +18,7 @@ python3 -m examples.solver_judge.train_solver_judge_flow \
     actor_rollout_ref.actor.loss_agg_mode=seq-mean-token-mean \
     actor_rollout_ref.actor.use_dynamic_bsz=True \
     actor_rollout_ref.actor.ppo_max_token_len_per_gpu=8192 \
-    actor_rollout_ref.actor.ppo_mini_batch_size=16 \
+    actor_rollout_ref.actor.ppo_mini_batch_size=8 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.kl_loss_coef=0.001 \
     actor_rollout_ref.actor.kl_loss_type=low_var_kl \
