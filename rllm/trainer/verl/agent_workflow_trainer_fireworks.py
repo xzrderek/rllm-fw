@@ -68,6 +68,8 @@ class PipelineAgentWorkflowPPOTrainer(AgentWorkflowPPOTrainer):
         # self.rollout_wg = RayWorkerGroup(resource_pool=rollout_resource_pool, ray_cls_with_init=rollout_cls)
 
         self.actor_wg.init_model()
+        self.actor_rollout_wg = self.actor_wg # for compatibility
+
         # self.rollout_wg.init_model()
         # self.rollout_wg.tp_size = self.config.actor_rollout_ref.rollout.get("tensor_model_parallel_size", 1)
 
