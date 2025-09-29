@@ -581,8 +581,8 @@ class AgentWorkflowPPOTrainer(RayPPOTrainer):
         else:
             if self.actor_wg.world_size != 0:
                 world_sizes.append(self.actor_wg.world_size)
-            if self.rollout_wg.world_size != 0:
-                world_sizes.append(self.rollout_wg.world_size)
+            # if self.rollout_wg.world_size != 0:
+                # world_sizes.append(self.rollout_wg.world_size)
         if not world_sizes:
             return batch
 
