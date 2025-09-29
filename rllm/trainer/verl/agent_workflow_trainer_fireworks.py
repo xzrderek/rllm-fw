@@ -74,8 +74,10 @@ class PipelineAgentWorkflowPPOTrainer(AgentWorkflowPPOTrainer):
         #     worker_group=self.rollout_wg,
         # )
 
+        from transformers import AutoTokenizer
         rollout_engine = FireworksEngine(
             model="accounts/fireworks/models/qwen3-30b-a3b-instruct-2507",
+            tokenizer=AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B")
             sampling_params={"temperature": 0.6, "top_p": 0.95, "max_tokens": 2048},
         )
 
