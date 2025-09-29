@@ -13,6 +13,7 @@ def extract_solution(solution_str):
     elif "<|im_start|>assistant" in solution_str:
         solution_str = solution_str.split("<|im_start|>assistant", 1)[1]
 
+    print("parsed solution_str: ", solution_str)
     # Look for answer pattern in the entire string
     answer_pattern = r"<answer>(.*?)</answer>"
     match = re.finditer(answer_pattern, solution_str)
