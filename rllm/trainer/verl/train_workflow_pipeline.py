@@ -9,7 +9,7 @@ from verl.trainer.ppo.reward import load_reward_manager
 from verl.utils.device import is_cuda_available
 
 from rllm.trainer.env_agent_mappings import WORKFLOW_CLASS_MAPPING
-from rllm.trainer.verl.agent_workflow_trainer_pipeline import (
+from rllm.trainer.verl.agent_workflow_trainer_fireworks import (
     PipelineAgentWorkflowPPOTrainer,
 )
 
