@@ -26,6 +26,18 @@ class FireworksEngine(OpenAIEngine):
         self.sampling_params = sampling_params or {}
         self._use_chat_completions = True
         self.tokenizer = tokenizer
+        if self.tokenizer is not None:
+            self.chat_parser = ChatTemplateParser.get_parser(self.tokenizer, disable_thinking=kwargs.get("disable_thinking", False))
+            try:
+                self.tool_parser = ToolParser.get_parser(self.tokenizer)
+            except Exception:
+                print(f"Warning: No tool parser found for {self.tokenizer.name_or_path}. Tool calls not be parsed.")
+                self.tool_parser = None
+            self._use_chat_completions = False
+        else:
+            print("No tokenizer provided, will use the chat completions endpoint. This is not recommended.")
+            self._use_chat_completions = True
+
         self.client = openai.AsyncOpenAI(base_url=base_url, api_key=api_key)
         logging.getLogger("httpx").setLevel(logging.WARNING)
 
