@@ -91,6 +91,13 @@ async def main():
     n_parallel_tasks = 10
     max_tasks = 10  # 50 is the full dataset
     model_id = "fireworks_ai/accounts/fireworks/models/gpt-oss-120b"
+    
+    # Create dummy rollout_engine (required by Workflow base class but not used)
+    rollout_engine = OpenAIEngine(
+        model="unused",
+        base_url="https://api.openai.com/v1",
+        api_key="unused",
+    )
  
     engine = AgentWorkflowEngine(
         workflow_cls=TauBenchAirlineWorkflow,
@@ -100,7 +107,7 @@ async def main():
             "temperature": 0.8,
             "max_tokens": 4096,
         },
-        rollout_engine=None,
+        rollout_engine=rollout_engine,
         n_parallel_tasks=n_parallel_tasks,
         retry_limit=1,
     )
