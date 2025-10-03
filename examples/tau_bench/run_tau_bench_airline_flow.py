@@ -91,13 +91,7 @@ async def main():
     n_parallel_tasks = 10
     max_tasks = 10  # 50 is the full dataset
     model_id = "fireworks_ai/accounts/fireworks/models/gpt-oss-120b"
-    
-    rollout_engine = OpenAIEngine(
-        model=model_id,
-        base_url="https://litellm-backend-prod-644257448872.us-central1.run.app",  # LiteLLM proxy, if we don't want to use proxy, need to write a LiteLLMEngine
-        api_key=os.getenv("FIREWORKS_API_KEY"),
-    )
-    
+ 
     engine = AgentWorkflowEngine(
         workflow_cls=TauBenchAirlineWorkflow,
         workflow_args={
@@ -106,7 +100,7 @@ async def main():
             "temperature": 0.8,
             "max_tokens": 4096,
         },
-        rollout_engine=rollout_engine,
+        rollout_engine=None,
         n_parallel_tasks=n_parallel_tasks,
         retry_limit=1,
     )
